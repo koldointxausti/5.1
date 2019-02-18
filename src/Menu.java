@@ -54,6 +54,7 @@ public class Menu {
 
 					}
 					break;
+				/*
 				case "2":
 					User user = new User();
 					for (int i = 0; i < 10; ++i)
@@ -87,6 +88,7 @@ public class Menu {
 
 					}
 					break;
+					*/
 				default:
 					System.out.println("Enter a valid number");
 					break;
