@@ -66,7 +66,7 @@ public class Users {
 	 * @return true if there's any User already added to the file, else, it returns
 	 *         false
 	 */
-	//this throws the exception in this case
+	//this can throw the exception
 	public boolean hasUser() throws FileNotFoundException {
 		
 		boolean hasUser = false;
