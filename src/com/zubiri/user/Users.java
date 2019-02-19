@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.Scanner;
 
 public class Users {
-	private File users = new File("src/usersData.txt");
+	private File users = new File("src/usersDate.txt");
 
 	/**
 	 * <p>
@@ -13,10 +13,9 @@ public class Users {
 	 * </p>
 	 * @throws IOException 
 	 */
-	//this line could throw the IOException in some cases
 	public Users() throws IOException{	
-		
 		if (!users.exists()) {
+			//this is the method which throws the exception
 			users.createNewFile();
 		}
 	}
@@ -35,6 +34,7 @@ public class Users {
 	 *             'userData.txt' in 'src' folder
 	 */
 	public void setUser(User user) throws IOException {
+		// throws the exception in the line FileWriter is used
 		FileWriter fw = new FileWriter(users, true);
 		fw.write(user.getName() + "::" + user.getPassword());
 		fw.write(System.getProperty("line.separator"));
@@ -48,6 +48,7 @@ public class Users {
 	 */
 	public User getUser(String username) throws FileNotFoundException {
 		User user = new User();
+		// this throws the exception
 		Scanner sc = new Scanner(users);
 		while (sc.hasNextLine()) {
 			String line = sc.nextLine();
@@ -68,7 +69,6 @@ public class Users {
 	 */
 	//this can throw the exception
 	public boolean hasUser() throws FileNotFoundException {
-		
 		boolean hasUser = false;
 		Scanner sc = new Scanner(users);
 		if (sc.hasNext())

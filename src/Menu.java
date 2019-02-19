@@ -68,7 +68,6 @@ public class Menu {
 						try {
 							// This can catch the exception
 							if (users.getUser(name).getName().equals("")) {
-								
 								if (user.setName(name)) {
 									askUsername = false;
 									boolean askPassword = true;
@@ -94,7 +93,6 @@ public class Menu {
 									System.out.println("Enter a valid username (no numbers or digits)");
 							} else
 								System.out.println("That username is alrady taken, try with another one.");
-						
 						} catch (FileNotFoundException e) {
 							e.printStackTrace();
 						} catch(IOException e) {
