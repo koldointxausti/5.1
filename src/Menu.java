@@ -26,34 +26,29 @@ public class Menu {
 				case "1":
 					for (int i = 0; i < 10; ++i)
 						System.out.println();
+					// this line catches the exception:
+					if (users.hasUser() == false) {
 
-					try {
-						// this line catches the exception:
-						if (users.hasUser() == false) {
-
-							System.out.println("No user registered yet");
-							System.out.println("----------------------");
-						} else {
-							System.out.println("Username:");
-							String username = sc.next();
-							sc.nextLine();
-							User user = users.getUser(username);
-							if (username.equals(user.getName())) {
-								System.out.println("Password:");
-								String password = sc.nextLine();
-								if (password.equals(user.getPassword())) {
-									System.out.println("Hi " + username + "!");
-									System.out.println();
-									System.out.println(
-											"Sorry, there are no options avaiable yet, so you are being logged out.");
-									System.out.println("----------------------");
-								} else
-									System.out.println("Incorrect password");
+						System.out.println("No user registered yet");
+						System.out.println("----------------------");
+					} else {
+						System.out.println("Username:");
+						String username = sc.next();
+						sc.nextLine();
+						User user = users.getUser(username);
+						if (username.equals(user.getName())) {
+							System.out.println("Password:");
+							String password = sc.nextLine();
+							if (password.equals(user.getPassword())) {
+								System.out.println("Hi " + username + "!");
+								System.out.println();
+								System.out.println(
+										"Sorry, there are no options avaiable yet, so you are being logged out.");
+								System.out.println("----------------------");
 							} else
-								System.out.println("Incorrect username");
-						}
-					} catch (IOException e) {
-						e.printStackTrace();
+								System.out.println("Incorrect password");
+						} else
+							System.out.println("Incorrect username");
 					}
 					break;
 
@@ -65,39 +60,34 @@ public class Menu {
 					while (askUsername) {
 						System.out.println("Username:");
 						String name = sc.nextLine();
-						try {
-							// This can catch the exception
-							if (users.getUser(name).getName().equals("")) {
-								if (user.setName(name)) {
-									askUsername = false;
-									boolean askPassword = true;
-									while (askPassword) {
-										System.out.println("Password:");
-										String password = sc.nextLine();
-										if (user.setPassword(password)) {
-											System.out.println("Done");
-											System.out.println("----------------------");
-											try {
-												users.setUser(user);
-											} catch (IOException e) {
-												e.printStackTrace();
-											}
-											askPassword = false;
-										} else {
-											System.out.println("Enter a valid password");
-											System.out.println(
-													"It has to have at least a letter,  a number, a symbol and 8 or more characters long");
+						if (users.getUser(name).getName().equals("")) {
+
+							if (user.setName(name)) {
+								askUsername = false;
+								boolean askPassword = true;
+								while (askPassword) {
+									System.out.println("Password:");
+									String password = sc.nextLine();
+									if (user.setPassword(password)) {
+										System.out.println("Done");
+										System.out.println("----------------------");
+										try {
+											users.setUser(user);
+										} catch (IOException e) {
+											e.printStackTrace();
 										}
+										askPassword = false;
+									} else {
+										System.out.println("Enter a valid password");
+										System.out.println(
+												"It has to have at least a letter,  a number, a symbol and 8 or more characters long");
 									}
-								} else
-									System.out.println("Enter a valid username (no numbers or digits)");
+								}
 							} else
-								System.out.println("That username is alrady taken, try with another one.");
-						} catch (FileNotFoundException e) {
-							e.printStackTrace();
-						} catch(IOException e) {
-							e.printStackTrace();
-						}
+								System.out.println("Enter a valid username (no numbers or digits)");
+						} else
+							System.out.println("That username is alrady taken, try with another one.");
+
 					}
 					break;
 
